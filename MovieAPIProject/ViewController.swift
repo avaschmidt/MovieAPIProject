@@ -17,10 +17,19 @@ class ViewController: UIViewController {
             }
             else{
                 if let d = data{
-                    
+                    if let jsonObj = try? JSONSerialization.jsonObject(with: d, options: .fragmentsAllowed) as? NSDictionary{
+                        print(jsonObj)
+                        if let mainDictionary = jsonObj.value(forKey: "main") as? NSDictionary{
+                            print(mainDictionary)
+                        }
+                    }
+                    else{
+                        print("Could't get data")
+                    }
                 }
             }
         }
+        dataTask.resume()
         
     }
 }
